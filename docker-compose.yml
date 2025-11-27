@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  telegram-bot:
+    build: .
+    container_name: tg_bot
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    # Если бот пишет файлы (например, логи или persist), можно примонтировать volume
+    volumes:
+      - ./bot_data:/app/data
+    # Примеры, если бот слушает порт (необязательно для polling-bot)
+    # ports:
+    #   - "8080:8080"
